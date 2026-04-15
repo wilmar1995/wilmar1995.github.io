@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Wilmar Cadungog — Digital Marketing & Social Media Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #080808; --bg2: #0f0f0f; --card: #141414; --card2: #1a1a1a;
+    --border: rgba(212,175,55,0.12); --border-hover: rgba(212,175,55,0.35);
+    --gold: #d4af37; --gold-light: #f0d060; --gold-dim: rgba(212,175,55,0.7);
+    --text: #f0edd8; --muted: #7a7060; --white: #ffffff;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 16px; }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { color: var(--gold-light); }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(8,8,8,0.92); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); letter-spacing: 1px; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+
+  .hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 100px 2rem 80px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -150px; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(212,175,55,0.08); border: 1px solid var(--border-hover);
+    color: var(--gold); font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; padding: 8px 20px; border-radius: 100px; margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 9vw, 96px); font-weight: 700; line-height: 1.0;
+    color: var(--white); margin-bottom: 6px;
+  }
+  .hero h1 .gold {
+    background: linear-gradient(135deg, #c9a227, #f0d060, #c9a227);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-rule { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 22px auto; }
+  .hero-sub { font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
+  .hero-desc { max-width: 520px; margin: 0 auto 44px; color: rgba(240,237,216,0.55); font-size: 16px; line-height: 1.85; }
+  .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 30px; border-radius: 6px;
+    font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    transition: all 0.25s; cursor: pointer; border: none; font-family: 'Inter', sans-serif;
+  }
+  .btn-primary { background: var(--gold); color: #080808; }
+  .btn-primary:hover { background: var(--gold-light); color: #080808; transform: translateY(-2px); }
+  .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border-hover); }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  section { padding: 100px 2rem; }
+  .container { max-width: 1060px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after { content: ''; flex: 0 0 40px; height: 1px; background: var(--gold); opacity: 0.35; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 4vw, 44px); font-weight: 700;
+    color: var(--white); margin-bottom: 52px;
+  }
+  .section-title span { color: var(--gold); }
+
+  .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center; }
+  .about-text p { color: rgba(240,237,216,0.6); margin-bottom: 16px; font-size: 16px; line-height: 1.85; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .stat-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 24px 20px; text-align: center; transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-color: var(--border-hover); }
+  .stat-card .num { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; color: var(--gold); line-height: 1; }
+  .stat-card .label { font-size: 12px; color: var(--muted); margin-top: 8px; letter-spacing: 0.3px; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; }
+  .service-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px 26px;
+    transition: border-color 0.25s, transform 0.25s; position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .service-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+  .service-card:hover::before { opacity: 1; }
+  .service-num { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--gold); opacity: 0.45; margin-bottom: 16px; letter-spacing: 1px; }
+  .service-card h3 { font-size: 17px; font-weight: 600; color: var(--white); margin-bottom: 10px; }
+  .service-card p { font-size: 14px; color: var(--muted); line-height: 1.75; }
+
+  /* GALLERY */
+  .gallery-tabs { display: flex; gap: 8px; margin-bottom: 36px; flex-wrap: wrap; }
+  .tab-btn {
+    padding: 9px 20px; border-radius: 6px; font-size: 12px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    border: 1px solid var(--border); background: transparent;
+    color: var(--muted); cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif;
+  }
+  .tab-btn:hover { border-color: var(--border-hover); color: var(--gold); }
+  .tab-btn.active { background: var(--gold); color: #080808; border-color: var(--gold); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
+  .gallery-item {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; transition: border-color 0.25s, transform 0.25s; cursor: pointer;
+  }
+  .gallery-item:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+  .gallery-thumb {
+    width: 100%; aspect-ratio: 1 / 1; background: var(--card2);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .gallery-thumb .ph { font-size: 52px; opacity: 0.12; }
+  .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .gallery-item:hover .gallery-thumb img { transform: scale(1.05); }
+  .gallery-overlay {
+    position: absolute; inset: 0; background: rgba(8,8,8,0.72);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-overlay span {
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--gold); border: 1px solid var(--gold); padding: 9px 20px; border-radius: 4px;
+  }
+  .gallery-info { padding: 16px 18px; }
+  .gallery-info .tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); opacity: 0.65; margin-bottom: 6px; display: block; }
+  .gallery-info h4 { font-size: 15px; font-weight: 600; color: var(--white); }
+  .gallery-info p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .gallery-notice {
+    text-align: center; padding: 22px 24px; margin-top: 24px;
+    border: 1px dashed rgba(212,175,55,0.25); border-radius: 10px;
+    color: var(--muted); font-size: 14px; line-height: 1.8;
+  }
+  .gallery-notice strong { color: var(--gold); display: block; margin-bottom: 6px; }
+  .gallery-notice code { color: var(--gold-dim); font-size: 13px; background: rgba(212,175,55,0.07); padding: 2px 8px; border-radius: 4px; }
+
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 8px; top: 10px; bottom: 10px;
+    width: 1px; background: linear-gradient(to bottom, var(--gold), transparent); opacity: 0.25;
+  }
+  .timeline-item { position: relative; margin-bottom: 44px; }
+  .timeline-item::before { content: '◆'; position: absolute; left: -27px; top: 4px; font-size: 9px; color: var(--gold); opacity: 0.6; }
+  .timeline-meta { font-size: 11px; color: var(--gold); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .timeline-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 14px; }
+  .timeline-list { list-style: none; }
+  .timeline-list li { font-size: 14px; color: var(--muted); padding: 4px 0 4px 18px; position: relative; }
+  .timeline-list li::before { content: '–'; position: absolute; left: 0; color: var(--gold); opacity: 0.45; }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .skill-pill {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 13px 14px; text-align: center; font-size: 13px; font-weight: 500; color: var(--muted);
+    transition: all 0.2s;
+  }
+  .skill-pill:hover { border-color: var(--border-hover); color: var(--gold); background: rgba(212,175,55,0.05); }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .contact-info h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--white); margin-bottom: 16px; }
+  .contact-info p { color: var(--muted); font-size: 15px; line-height: 1.8; margin-bottom: 28px; }
+  .contact-links { display: flex; flex-direction: column; gap: 10px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 14px;
+    color: var(--muted); font-size: 14px; font-weight: 500;
+    padding: 13px 16px; border-radius: 8px; border: 1px solid var(--border); transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--border-hover); color: var(--gold); background: rgba(212,175,55,0.04); }
+  .contact-link .icon { font-size: 16px; width: 18px; text-align: center; }
+  .contact-form { display: flex; flex-direction: column; gap: 12px; }
+  .contact-form input, .contact-form textarea {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 14px 16px; color: var(--text); font-size: 14px;
+    font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s; resize: none;
+  }
+  .contact-form input:focus, .contact-form textarea:focus { border-color: var(--border-hover); }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--muted); }
+
+  footer { border-top: 1px solid var(--border); padding: 36px 2rem; text-align: center; color: var(--muted); font-size: 13px; letter-spacing: 0.5px; }
+  footer span { color: var(--gold); }
+
+  @media (max-width: 768px) {
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 52px; }
+  }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: #2a2418; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">WC</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-badge">◆ Available for New Projects</div>
+    <h1><span class="gold">Wilmar</span><br>Cadungog</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Digital Marketing · Social Media · Content Creator</p>
+    <p class="hero-desc">Helping businesses grow online through strategic social media management, compelling content, and data-driven digital marketing.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">Let's Work Together</a>
+      <a href="#portfolio" class="btn btn-secondary">View My Work</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background: var(--bg2);">
+  <div class="container">
+    <span class="section-label">About Me</span>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="section-title" style="margin-bottom:24px;">6+ Years of <span>Digital Experience</span></h2>
+        <p>I'm a versatile digital professional with a background spanning social media management, appointment setting, content creation, and government communications. I combine creativity with strategy to help businesses attract and convert clients online.</p>
+        <p>From managing a 14,400-member Facebook community to implementing ManyChat automations, I thrive at the intersection of human connection and smart systems.</p>
+        <p>Beyond marketing, I'm a musician, video editor, coach, and motivational speaker — bringing a unique creative energy to everything I do.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card"><div class="num">6+</div><div class="label">Years of Experience</div></div>
+        <div class="stat-card"><div class="num">14k+</div><div class="label">Community Members Managed</div></div>
+        <div class="stat-card"><div class="num">4+</div><div class="label">Industries Served</div></div>
+        <div class="stat-card"><div class="num">∞</div><div class="label">Ideas & Drive</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <span class="section-label">What I Offer</span>
+    <h2 class="section-title">Services Built to <span>Grow Your Business</span></h2>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-num">01</div><h3>Social Media Management</h3><p>Full management of your Facebook, Instagram, and other platforms — content planning, posting, community engagement, and growth strategy.</p></div>
+      <div class="service-card"><div class="service-num">02</div><h3>DM & Appointment Setting</h3><p>Strategic outreach to new leads, qualifying prospects through targeted conversations, and booking calls — powered by proven scripts and automations.</p></div>
+      <div class="service-card"><div class="service-num">03</div><h3>Content Creation</h3><p>Daily carousel posts, quote cards, t-shirt designs, social media graphics, and copywriting that stops the scroll and speaks to your audience.</p></div>
+      <div class="service-card"><div class="service-num">04</div><h3>Marketing Automation</h3><p>Setup and management of ManyChat and other automation tools to streamline your funnel, nurture leads, and save hours every week.</p></div>
+      <div class="service-card"><div class="service-num">05</div><h3>Video Editing</h3><p>Professional video editing for YouTube, social reels, and promotional content — engaging visuals that build your brand's online presence.</p></div>
+      <div class="service-card"><div class="service-num">06</div><h3>Coaching & Speaking</h3><p>Motivational speaking, mentoring, and teaching sessions — helping individuals and teams unlock their potential and achieve their goals.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO GALLERY -->
+<section id="portfolio" style="background: var(--bg2);">
+  <div class="container">
+    <span class="section-label">My Work</span>
+    <h2 class="section-title">Portfolio <span>Gallery</span></h2>
+    <div class="gallery-tabs">
+      <button class="tab-btn active" onclick="filterGallery('all',this)">All Work</button>
+      <button class="tab-btn" onclick="filterGallery('tshirt',this)">T-Shirt Designs</button>
+      <button class="tab-btn" onclick="filterGallery('social',this)">Social Media Posters</button>
+      <button class="tab-btn" onclick="filterGallery('quote',this)">Quote Cards</button>
+    </div>
+    <div class="gallery-grid" id="gallery-grid">
+
+      <!-- T-SHIRT DESIGNS — replace placeholder with: <img src="YOUR_IMAGE_URL" alt="description"> -->
+      <div class="gallery-item" data-cat="tshirt">
+        <div class="gallery-thumb">
+          <span class="ph">👕</span>
+          <!-- <img src="YOUR_IMAGE_URL" alt="T-Shirt Design 1"> -->
+          <div class="gallery-overlay"><span>View</span></div>
+        </div>
+        <div class="gallery-info"><span class="tag">T-Shirt Design</span><h4>Design Title Here</h4><p>Short description</p></div>
+      </div>
+      <div class="gallery-item" data-cat="tshirt">
+        <div class="gallery-thumb">
+          <span class="ph">👕</span>
+          <!-- <img src="YOUR_IMAGE_URL" alt="T-Shirt Design 2"> -->
+          <div class="gallery-overlay"><span>View</span></div>
+        </div>
+        <div class="gallery-info"><span class="tag">T-Shirt Design</span><h4>Design Title Here</h4><p>Short description</p></div>
+      </div>
+      <div class="gallery-item" data-cat="tshirt">
+        <div class="gallery-thumb">
+          <span class="ph">👕</span>
+          <!-- <img src="YOUR_IMAGE_URL" alt="T-Shirt Design 3"> -->
+          <div class="gallery-overlay"><span>View</span></div>
+        </div>
+        <div class="gallery-info"><span class="tag">T-Shirt Design</span><h4>Design Title Here</h4><p>Short description</p></div>
+      </div>
+
+      <!-- SOCIAL MEDIA POSTERS -->
+      <div class="gallery-item" data-cat="social">
+        <div class="gallery-thumb">
+          <span class="ph">🖼️</span>
+          <!-- <img src="YOUR_IMAGE_URL" alt="Social Poster 1"> -->
+          <div class="gallery-overlay"><span>View</span></div>
+        </div>
+        <div class="gallery-info"><span class="tag">Social Media Poster</span><h4>Poster Title Here</h4><p>Short description</p></div>
+      </div>
+      <div class="gallery-item" data-cat="social">
+        <div class="gallery-thumb">
+          <span class="ph">🖼️</span>
+          <!-- <img src="YOUR_IMAGE_URL" alt="Social Poster 2"> -->
+          <div class="gallery-overlay"><span>View</span></div>
+        </div>
+        <div class="gallery-info"><span class="tag">Social Media Poster</span><h4>Poster Title Here</h4><p>Short description</p></div>
+      </div>
+      <div class="gallery-item" data-cat="social">
+        <div class="gallery-thumb">
+          <span class="ph">🖼️</span>
+          <!-- <img src="YOUR_IMAGE_URL" alt="Social Poster 3"> -->
+          <div class="gallery-overlay"><span>View</span></div>
+        </div>
+        <div class="gallery-info"><span class="tag">Social Media Poster</span><h4>Poster Title Here</h4><p>Short description</p></div>
+      </div>
+
+      <!-- QUOTE CARDS -->
+      <div class="gallery-item" data-cat="quote">
+        <div class="gallery-thumb">
+          <span class="ph">💬</span>
+          <!-- <img src="YOUR_IMAGE_URL" alt="Quote Card 1"> -->
+          <div class="gallery-overlay"><span>View</span></div>
+        </div>
+        <div class="gallery-info"><span class="tag">Quote Card</span><h4>Quote Card Title</h4><p>Short description</p></div>
+      </div>
+      <div class="gallery-item" data-cat="quote">
+        <div class="gallery-thumb">
+          <span class="ph">💬</span>
+          <!-- <img src="YOUR_IMAGE_URL" alt="Quote Card 2"> -->
+          <div class="gallery-overlay"><span>View</span></div>
+        </div>
+        <div class="gallery-info"><span class="tag">Quote Card</span><h4>Quote Card Title</h4><p>Short description</p></div>
+      </div>
+      <div class="gallery-item" data-cat="quote">
+        <div class="gallery-thumb">
+          <span class="ph">💬</span>
+          <!-- <img src="YOUR_IMAGE_URL" alt="Quote Card 3"> -->
+          <div class="gallery-overlay"><span>View</span></div>
+        </div>
+        <div class="gallery-info"><span class="tag">Quote Card</span><h4>Quote Card Title</h4><p>Short description</p></div>
+      </div>
+
+    </div>
+    <div class="gallery-notice">
+      <strong>How to add your real images</strong>
+      In each gallery card, find the commented line <code>&lt;!-- &lt;img src="YOUR_IMAGE_URL"&gt; --&gt;</code> and uncomment it, replacing <code>YOUR_IMAGE_URL</code> with a direct link to your image (from Google Drive, Imgur, or any image host). You can also add more cards by duplicating any gallery-item block.
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <span class="section-label">Work History</span>
+    <h2 class="section-title">My <span>Experience</span></h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-meta">July 2025 — December 2025</div>
+        <div class="timeline-title">DM Setter / Appointment Setter</div>
+        <ul class="timeline-list">
+          <li>Reached out to new followers with custom welcome messages to build rapport</li>
+          <li>Qualified prospect clients through targeted question sequences</li>
+          <li>Booked discovery calls for the sales team consistently</li>
+          <li>Managed Facebook group (14.4k members) and Skool community (1.8k members)</li>
+          <li>Crafted and scheduled daily carousel content</li>
+          <li>Researched and implemented ManyChat automations to improve efficiency</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-meta">June 2019 — June 2024</div>
+        <div class="timeline-title">Government Employee — Local Government Unit</div>
+        <ul class="timeline-list">
+          <li>Social Media Manager for the Local Government Unit</li>
+          <li>QMS Focal Person — institutionalized processes for the public information office</li>
+          <li>Internal Quality Auditor ensuring compliance and quality standards</li>
+          <li>Records Officer — digitalized incoming and outgoing document processes</li>
+          <li>Established an accomplishment monitoring system for the department</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-meta">March 2015 — December 2018</div>
+        <div class="timeline-title">Junior Manager — Today's Digital Solutions International</div>
+        <ul class="timeline-list">
+          <li>Managed agent shifting schedules and daily operations</li>
+          <li>Monitored and coached agents on performance and productivity</li>
+          <li>Handled incoming chats and calls as needed</li>
+          <li>Produced end-of-shift reports for senior management</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-meta">January 2019 — May 2019</div>
+        <div class="timeline-title">Site Builder / Content Writer / Data Researcher</div>
+        <ul class="timeline-list">
+          <li>Published and updated SEO-optimized blog content</li>
+          <li>Performed keyword research, photo editing, and proofreading</li>
+          <li>Incorporated internal/external links to boost page authority</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section style="background: var(--bg2); padding: 80px 2rem;">
+  <div class="container">
+    <span class="section-label">Skills & Tools</span>
+    <h2 class="section-title">What I <span>Bring to the Table</span></h2>
+    <div class="skills-grid">
+      <div class="skill-pill">Social Media Mgmt</div>
+      <div class="skill-pill">Content Creation</div>
+      <div class="skill-pill">Copywriting</div>
+      <div class="skill-pill">ManyChat</div>
+      <div class="skill-pill">Video Editing</div>
+      <div class="skill-pill">Graphic Design</div>
+      <div class="skill-pill">Lead Generation</div>
+      <div class="skill-pill">Appointment Setting</div>
+      <div class="skill-pill">Community Mgmt</div>
+      <div class="skill-pill">SEO Basics</div>
+      <div class="skill-pill">Photo Editing</div>
+      <div class="skill-pill">QMS / Auditing</div>
+      <div class="skill-pill">Coaching & Mentoring</div>
+      <div class="skill-pill">Public Speaking</div>
+      <div class="skill-pill">Teaching / Lecturing</div>
+      <div class="skill-pill">Team Management</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section style="padding: 80px 2rem;">
+  <div class="container">
+    <span class="section-label">Education</span>
+    <h2 class="section-title">Academic <span>Background</span></h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-meta">2018 — 2022</div>
+        <div class="timeline-title">BS Electronics & Communications Engineering</div>
+        <ul class="timeline-list"><li>Saint Joseph Institute of Technology</li></ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-meta">2013 — 2015</div>
+        <div class="timeline-title">BS Information Technology (Undergrad)</div>
+        <ul class="timeline-list"><li>Caraga State University</li></ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-meta">2008 — 2012</div>
+        <div class="timeline-title">Secondary Education — Special Honor</div>
+        <ul class="timeline-list"><li>Agusan National High School</li></ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-meta">2002 — 2008</div>
+        <div class="timeline-title">Elementary Education — Salutatorian</div>
+        <ul class="timeline-list"><li>Ong Yiu Central Elementary School</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background: var(--bg2);">
+  <div class="container">
+    <span class="section-label">Get In Touch</span>
+    <h2 class="section-title">Let's <span>Work Together</span></h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Open to New Opportunities</h3>
+        <p>Whether you need a social media manager, content creator, appointment setter, or motivational speaker — I'd love to hear about your project and how I can help you grow.</p>
+        <div class="contact-links">
+          <a href="mailto:wilmarcadungog1@gmail.com" class="contact-link"><span class="icon">✉</span> wilmarcadungog1@gmail.com</a>
+          <a href="tel:+639562160952" class="contact-link"><span class="icon">☎</span> +63 956 216 0952</a>
+          <a href="https://www.facebook.com/cadungogwilmar/" target="_blank" class="contact-link"><span class="icon">f</span> facebook.com/cadungogwilmar</a>
+          <a href="https://www.linkedin.com/in/wilmar-cadungog/" target="_blank" class="contact-link"><span class="icon">in</span> linkedin.com/in/wilmar-cadungog</a>
+          <a href="https://www.youtube.com/@Christ-E" target="_blank" class="contact-link"><span class="icon">▶</span> YouTube: @Christ-E</a>
+        </div>
+      </div>
+      <div>
+        <div class="contact-form">
+          <input type="text" placeholder="Your Name" />
+          <input type="email" placeholder="Your Email" />
+          <input type="text" placeholder="Subject" />
+          <textarea rows="5" placeholder="Tell me about your project..."></textarea>
+          <a href="mailto:wilmarcadungog1@gmail.com" class="btn btn-primary" style="text-align:center;justify-content:center;">Send Message →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>Wilmar Cadungog</span> · All Rights Reserved · Built with Purpose ◆</p>
+</footer>
+
+<script>
+function filterGallery(cat, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.style.display = (cat === 'all' || item.dataset.cat === cat) ? 'block' : 'none';
+  });
+}
+</script>
+</body>
+</html>
